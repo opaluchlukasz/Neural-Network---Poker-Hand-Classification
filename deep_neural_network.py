@@ -77,10 +77,14 @@ def initialize_parameters_deep(layer_dims):
     parameters = {}
     L = len(layer_dims)
 
-    for layer_index in range(1, L):
-        parameters[f"W{layer_index}"] = np.random.randn(layer_dims[layer_index], layer_dims[layer_index - 1]) * 0.01
+    # He initialization is used for layers with ReLU activation function
+    for layer_index in range(1, L - 1):
+        parameters[f"W{layer_index}"] = np.random.randn(layer_dims[layer_index], layer_dims[layer_index - 1]) * np.sqrt(2./layer_dims[layer_index - 1])
         parameters[f"b{layer_index}"] = np.zeros((layer_dims[layer_index], 1)) 
-                
+
+    parameters[f"W{L - 1}"] = np.random.randn(layer_dims[L - 1], layer_dims[L - 2]) * 0.01
+    parameters[f"b{L - 1}"] = np.zeros((layer_dims[L - 1], 1)) 
+ 
     return parameters
 
 def linear_forward(A, W, b):

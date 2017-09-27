@@ -26,7 +26,7 @@ def run():
     print(f"8 rank categorised as: {predictions[0][4]}")
     print(f"9 rank categorised as: {predictions[0][5]}")
 
-def L_layer_model(X, Y, layers_dims, learning_rate = 1, num_iterations = 1500):
+def L_layer_model(X, Y, layers_dims, learning_rate = 0.25, num_iterations = 1500):
     """
     Implements a L-layer neural network: [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID.
     
